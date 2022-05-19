@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import { gql, useQuery } from "@apollo/client";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Header } from "./components/header/Header";
