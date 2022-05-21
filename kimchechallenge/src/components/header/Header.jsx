@@ -12,16 +12,36 @@ export const Header = () => {
     objectFit: "cover",
     borderBottomLeftRadius: "12%",
     borderBottomRightRadius: "12%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
   };
-  const inputStyles = {
-    w: "20rem",
-    background: "white"
+  const center = {
+    display: "flex",
+    flexDirection: "column",
+  };
+  const input = {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    backgroundColor: "white",
+  };
+  const wellcome = {
+    fontSize: "4rem",
+    textAlign: "center",
+    paddingBottom: "3rem"
   };
   return (
     <Box sx={basicBoxStyles}>
-      <Center h="100px" display='flex'>
-        <Input sx={inputStyles} placeholder="medium size"  />
-        <Button colorScheme='blue'>Button</Button>
+      <Center sx={wellcome} fontFamily="heading" color="800">
+        Welcome to CountryFinder
+      </Center>
+      <Center h="100px" display="flex" sx={center}>
+        <Box sx={input}>
+          <Input placeholder="medium size" />
+          <Button colorScheme="blue">Button</Button>
+        </Box>
       </Center>
     </Box>
   );

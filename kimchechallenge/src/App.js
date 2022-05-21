@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Header } from "./components/header/Header";
+import { Button, ButtonGroup, Center, Text } from "@chakra-ui/react";
 
 const App = () => {
   const COUNTRIES = gql`
@@ -17,22 +17,27 @@ const App = () => {
       }
     }
   `;
+  const [continents, setContinents] = useState([]);
   const { loading, error, data } = useQuery(COUNTRIES);
-  if(loading) return <h1>Loading...</h1>
+
+  useEffect(() => {
+    setContinents(data);
+  }, [data]);
+
+  if (loading) return <h1>Loading...</h1>;
   if (error) return `Error! ${error.message}`;
-  
-  const colors = {
-    brand: {
-      900: '#1a365d',
-      800: '#153e75',
-      700: '#2a69ac',
-    },
-  }
-  const theme = extendTheme({ colors })
+
   return (
-    <ChakraProvider theme={theme} >
-      <Header/>
-    </ChakraProvider>
+    <>
+      <Header />
+      <Center>
+        <ButtonGroup gap="4" alignItems="center" >
+          <Text> Group by:</Text>
+          <Button colorScheme="blackAlpha">Continents</Button>
+          <Button colorScheme="blackAlpha">Language</Button>
+        </ButtonGroup>
+      </Center>
+    </>
   );
 };
 export default App;
