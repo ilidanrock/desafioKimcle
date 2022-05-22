@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
@@ -24,15 +24,15 @@ const obj = {
     heading: "roboto-serif",
   },
 };
-const theme = extendTheme( obj );
-ReactDOM.render(
-  <ApolloProvider client={client}>
-    <React.StrictMode>
+const theme = extendTheme(obj);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <ApolloProvider client={client}>
       <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>
-    </React.StrictMode>
-  </ApolloProvider>,
-  document.getElementById("root")
+    </ApolloProvider>
+  </React.StrictMode>
 );
 serviceWorker.unregister();
